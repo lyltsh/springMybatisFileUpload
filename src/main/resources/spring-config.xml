@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <import resource="classpath:spring-mvc.xml"/>
+
+    <!--chapter07 文件上传解析器-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize">
+            <!--文件上传大小上线，单位为字节（10M)-->
+            <value>10485760</value>
+        </property>
+        <property name="defaultEncoding">
+            <!--请求的编码格式，必须和jsp的pageEncoding属性一致，默认iso-8859-1-->
+            <value>UTF-8</value>
+        </property>
+    </bean>
+
+    <!--chapter07 拦截器配置-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--拦截所有请求-->
+            <mvc:mapping path="/*"/>
+            <!--使用bean定义一个拦截器-->
+            <bean class="com.spmb.controller.chapter07.interceptor.inter.AuthorizationInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- 视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--前缀-->
+        <property name="prefix">
+            <value>/WEB-INF/content/</value>
+        </property>
+        <!--后缀-->
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+
+
+</beans>
