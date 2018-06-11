@@ -24,14 +24,14 @@
     </bean>
 
     <!--chapter07 拦截器配置-->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <!--拦截所有请求-->
-            <mvc:mapping path="/*"/>
-            <!--使用bean定义一个拦截器-->
-            <bean class="com.spmb.controller.chapter07.interceptor.inter.AuthorizationInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash;拦截所有请求&ndash;&gt;-->
+            <!--<mvc:mapping path="/*"/>-->
+            <!--&lt;!&ndash;使用bean定义一个拦截器&ndash;&gt;-->
+            <!--<bean class="com.spmb.controller.chapter07.interceptor.inter.AuthorizationInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
